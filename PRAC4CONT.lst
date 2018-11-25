@@ -1,0 +1,199 @@
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR=(3 AND 5 AND 8);
+WHERE CAR=(3 AND 5 AND 8)
+             *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR=3 AND 5 AND 8;
+WHERE CAR=3 AND 5 AND 8
+                  *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR=3 && 5 && 8;
+Enter value for 5: WDADSA
+Enter value for 8: ASDASD
+old   3: WHERE CAR=3 && 5 && 8
+new   3: WHERE CAR=3 WDADSA ASDASD
+WHERE CAR=3 WDADSA ASDASD
+            *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR=3 AND CAR=5 AND CAR= 8;
+
+no rows selected
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR=3;
+
+AR                                                                              
+------------------------------------------------------------                    
+ASTRONOMIA Y ASTROFISICA                                                        
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR=3,5,8;
+WHERE CAR=3,5,8
+           *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR=3|5|8;
+WHERE CAR=3|5|8
+           *
+ERROR at line 3:
+ORA-00996: the concatenate operator is ||, not | 
+
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR=3||5||8;
+
+no rows selected
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR=3+5+8;
+
+no rows selected
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR IS 3 OR 5 OR 8;
+WHERE CAR IS 3 OR 5 OR 8
+             *
+ERROR at line 3:
+ORA-00908: missing NULL keyword 
+
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR=3 OR CAR=5 OR CAR=8;
+
+AR                                                                              
+------------------------------------------------------------                    
+ASTRONOMIA Y ASTROFISICA                                                        
+DIDACTICA DE LA MATEMATICA                                                      
+MATEMATICA APLICADA                                                             
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR!=3 OR CAR!=5 OR CAR!=8;
+
+AR                                                                              
+------------------------------------------------------------                    
+ALGEBRA                                                                         
+ANALISIS MATEMATICO                                                             
+ASTRONOMIA Y ASTROFISICA                                                        
+CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                            
+DIDACTICA DE LA MATEMATICA                                                      
+ESTADISTICA E INVESTIGACION OPERATIVA                                           
+LENGUAJES Y SISTEMAS INFORMATICOS                                               
+MATEMATICA APLICADA                                                             
+
+8 rows selected.
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR!=3 AND CAR!=5 AND CAR!=8;
+
+AR                                                                              
+------------------------------------------------------------                    
+ALGEBRA                                                                         
+ANALISIS MATEMATICO                                                             
+CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                            
+ESTADISTICA E INVESTIGACION OPERATIVA                                           
+LENGUAJES Y SISTEMAS INFORMATICOS                                               
+
+SQL> SELECT DNI
+  2  FROM PROFESOR
+  3  WHERE DNI BETWEEN 3000 AND 7000;
+
+       DNI                                                                      
+----------                                                                      
+      3030                                                                      
+      3333                                                                      
+      4444                                                                      
+      5555                                                                      
+      6666                                                                      
+
+SQL> SELECT DNI
+  2  FROM PROFESOR
+  3  WHERE DNI NOT BETWEEN 3000 AND 7000;
+
+       DNI                                                                      
+----------                                                                      
+      1010                                                                      
+      1111                                                                      
+      2020                                                                      
+      2222                                                                      
+      7777                                                                      
+      8888                                                                      
+      9999                                                                      
+
+7 rows selected.
+
+SQL> SELECT CAS
+  2  FROM PLAN_DOCENTE
+  3  WHERE DNI=1111;
+
+       CAS                                                                      
+----------                                                                      
+         8                                                                      
+         8                                                                      
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  SUM CT,CP,CL;
+SUM CT,CP,CL
+    *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT A, SUM(CT,CP,CL)
+  2  FROM ASIGNATURA;
+SELECT A, SUM(CT,CP,CL)
+          *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT A, SUM(CT)
+  2  from asignatrua;
+from asignatrua
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT A, SUM(CT)
+  2  from ASIGNATURA;
+SELECT A, SUM(CT)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> COMMIT WORK
+  2  ;
+
+Commit complete.
+
+SQL> SPOOL OFF
