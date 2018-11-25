@@ -1,0 +1,811 @@
+SQL> SELECT COUNT(P)
+  2  FROM PROFESOR;
+
+  COUNT(P)                                                                      
+----------                                                                      
+        12                                                                      
+
+SQL> SELECT COUNT(P)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR
+  3  WHERE DEPARTAMENTO.D LIKE 'ASTROFISICA';
+
+  COUNT(P)                                                                      
+----------                                                                      
+         1                                                                      
+
+SQL> SELECT COUNT(PROFESOR.P)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR
+  3  WHERE DEPARTAMENTO.D LIKE 'ASTROFISICA';
+
+COUNT(PROFESOR.P)                                                               
+-----------------                                                               
+                1                                                               
+
+SQL> SELECT DEP.D, COUNT(PR.P)
+  2  FROM DEPARTAMENTO DEP NATURAL JOIN AREA NATURAL JOIN PROFESOR PR
+  3  ORDER BY DEP.D ASC;
+SELECT DEP.D, COUNT(PR.P)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT DEPA.D, COUNT(PR.P)
+  2  FROM DEPARTAMENTO DEPA NATURAL JOIN AREA NATURAL JOIN PROFESOR PR
+  3  ORDER BY DEPA.D ASC;
+SELECT DEPA.D, COUNT(PR.P)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT DEPARTAMENTO.D, COUNT(PR.P)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR PR
+  3  ORDER BY DEPARTAMENTO.D ASC;
+SELECT DEPARTAMENTO.D, COUNT(PR.P)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT DEPARTAMENTO.D, COUNT(PR.P)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR PR
+  3  ORDER BY DEPARTAMENTO.D ASC
+  4  GROUP BY DEPARTAMENTO.D;
+GROUP BY DEPARTAMENTO.D
+*
+ERROR at line 4:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT DEPARTAMENTO.D, COUNT(PR.P)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR PR
+  3  GROUP BY DEPARTAMENTO.D
+  4  ORDER BY DEPARTAMENTO.D ASC;
+
+D                                                            COUNT(PR.P)        
+------------------------------------------------------------ -----------        
+ANALISIS MATEMATICO                                                    3        
+ASTROFISICA                                                            1        
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                     7        
+MATEMATICA FUNDAMENTAL                                                 1        
+
+SQL> AHORA 9
+SP2-0042: unknown command "AHORA 9" - rest of line ignored.
+SQL> SELECT ASIGNATURA.T
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOINQWDE
+  3  ;
+FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOINQWDE
+                                            *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT COUNT(ASIGNATURA.T)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN ASIGNATURA
+  3  WHERE DEPARTAMENTO.D LIKE 'ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION';
+
+COUNT(ASIGNATURA.T)                                                             
+-------------------                                                             
+                  7                                                             
+
+SQL> SELECT COUNT(PROFESOR.P)
+  2  FROM AREA NATURAL JOIN PROFESOR
+  3  WHERE AREA.AR LIKE 'A%';
+
+COUNT(PROFESOR.P)                                                               
+-----------------                                                               
+                3                                                               
+
+SQL> SELECT ASI.T, COUNT(ASI.A)
+  2  FROM ASIGNATURA
+  3  ASI GROUP BY T
+  4  ORDER BY DASD;
+ORDER BY DASD
+         *
+ERROR at line 4:
+ORA-00904: "DASD": invalid identifier 
+
+
+SQL> SELECT ASI.T, COUNT(ASI.A)
+  2  FROM ASIGNATURA ASI
+  3  GROUP BY TDASDA;
+GROUP BY TDASDA
+         *
+ERROR at line 3:
+ORA-00904: "TDASDA": invalid identifier 
+
+
+SQL> SELECT T, COUNT(A)
+  2  FROM ASIGNATURA
+  3  GROUP BY T
+  4  ORDER BY T ASC;
+
+T      COUNT(A)                                                                 
+---- ----------                                                                 
+GF            1                                                                 
+GII           7                                                                 
+GM            2                                                                 
+MII           2                                                                 
+
+SQL> SELECT A
+  2  FROM ASIGNATRUADASDAS;
+FROM ASIGNATRUADASDAS
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  GROUP BY A
+  4  HAVING MAX(CT);
+HAVING MAX(CT)
+             *
+ERROR at line 4:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT A, MAX(CT)
+  2  FROM ASIGNATURA;
+SELECT A, MAX(CT)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT A, MAX(CT)
+  2  FROM ASIGNATURA
+  3  GROUP BY CT;
+SELECT A, MAX(CT)
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT A, MAX(CT)
+  2  FROM ASIGNATURA
+  3  GROUP BY A;
+
+A                                                     MAX(CT)                   
+-------------------------------------------------- ----------                   
+ALGEBRA                                                     3                   
+INFORMATICA BASICA                                          3                   
+OPTIMIZACION                                                3                   
+CALCULO                                                     3                   
+GESTION DE RIESGOS                                          3                   
+ENSENANZA DE LA MATEMATICA                                  6                   
+ANALISIS COMPLEJO                                         4.5                   
+BASE DE DATOS                                               3                   
+INTELIGENCIA ARTIFICIAL                                   1.5                   
+MINERIA DE DATOS                                          1.5                   
+ALMACENES DE DATOS                                        1.5                   
+
+A                                                     MAX(CT)                   
+-------------------------------------------------- ----------                   
+ASTRONOMIA                                                  3                   
+
+12 rows selected.
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT= SELECT MAX(CT)
+  4  FROM ASIGNATURA);
+WHERE CT= SELECT MAX(CT)
+          *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  FROM ASIGNATURADASDA;
+FROM ASIGNATURADASDA
+*
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT A
+  2  FROM ASIGNATURA AS1
+  3  WHERE (AS1.CT= SELECT MAX(AS2.CT)
+  4  FROM ASIGNATURA AS2
+  5  );
+WHERE (AS1.CT= SELECT MAX(AS2.CT)
+             *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT = SELECT MAX(CT)
+  4  FROM ASIGNATURA;
+WHERE CT = SELECT MAX(CT)
+           *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT MAX(CT)
+  2  FROM ASIGNATRUA;
+FROM ASIGNATRUA
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT MAX(CT)
+  2  FROM ASIGNATURA;
+
+   MAX(CT)                                                                      
+----------                                                                      
+         6                                                                      
+
+SQL> SELECT A,MAX(CT)
+  2  FROM ASIGNATURA;
+SELECT A,MAX(CT)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT= SELECT MAX(CT) FROM ASIGNATURA;
+WHERE CT= SELECT MAX(CT) FROM ASIGNATURA
+          *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT=6;
+
+A                                                                               
+--------------------------------------------------                              
+ENSENANZA DE LA MATEMATICA                                                      
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT= (SELECT MAX(CT) FROM ASIGNATURA);
+
+A                                                                               
+--------------------------------------------------                              
+ENSENANZA DE LA MATEMATICA                                                      
+
+SQL> AHORA 13;
+SP2-0042: unknown command "AHORA 13" - rest of line ignored.
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT= (SELECT MIN(CT) FROM ASIGNATURA);
+
+A                                                                               
+--------------------------------------------------                              
+INTELIGENCIA ARTIFICIAL                                                         
+ALMACENES DE DATOS                                                              
+MINERIA DE DATOS                                                                
+
+SQL> AHORA 14
+SP2-0042: unknown command "AHORA 14" - rest of line ignored.
+SQL> SELECT A, COUNT(CT,CP,CL)
+  2  FROM ASIGNATURA;
+SELECT A, COUNT(CT,CP,CL)
+          *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT A, SUM(CT,CP,CL)
+  2  FROM ASIGNATURA;
+SELECT A, SUM(CT,CP,CL)
+          *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT SUM(CUR)
+  2  FROM ASIGNATURA;
+
+  SUM(CUR)                                                                      
+----------                                                                      
+        23                                                                      
+
+SQL> SELECT COUNT(CUR)
+  2  FROM ASIGNATURA;
+
+COUNT(CUR)                                                                      
+----------                                                                      
+        12                                                                      
+
+SQL> SELECT A, CT+CP+CL
+  2  FROM ASIGNATURA;
+
+A                                                    CT+CP+CL                   
+-------------------------------------------------- ----------                   
+BASE DE DATOS                                               6                   
+INTELIGENCIA ARTIFICIAL                                     6                   
+ALMACENES DE DATOS                                          3                   
+MINERIA DE DATOS                                            3                   
+INFORMATICA BASICA                                          6                   
+ALGEBRA                                                     6                   
+CALCULO                                                     6                   
+OPTIMIZACION                                                6                   
+GESTION DE RIESGOS                                          6                   
+ASTRONOMIA                                                  6                   
+ENSENANZA DE LA MATEMATICA                                  6                   
+
+A                                                    CT+CP+CL                   
+-------------------------------------------------- ----------                   
+ANALISIS COMPLEJO                                         7.5                   
+
+12 rows selected.
+
+SQL> AHORA 15
+SP2-0042: unknown command "AHORA 15" - rest of line ignored.
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT+CP+CL = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA;
+WHERE CT+CP+CL = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA
+                  *
+ERROR at line 3:
+ORA-00921: unexpected end of SQL command 
+
+
+SQL> SELECT A, MAX(CT+CP+CL)
+  2  FROM ASIGNATURA;
+SELECT A, MAX(CT+CP+CL)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT A, MAX(CT+CP+CL) B
+  2  FROM ASIGNATURA
+  3  WHERE B = (SELECT MAX(B) FROM ASIGNATURA);
+WHERE B = (SELECT MAX(B) FROM ASIGNATURA)
+      *
+ERROR at line 3:
+ORA-00904: "B": invalid identifier 
+
+
+SQL> SELECT MAX(CT+CP+CL)
+  2  FROMASIGNATURA;
+FROMASIGNATURA
+             *
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT MAX(CT+CP+CL)
+  2  FROM ASIGNATURA;
+
+MAX(CT+CP+CL)                                                                   
+-------------                                                                   
+          7.5                                                                   
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT+CP+CL = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA;
+WHERE CT+CP+CL = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA
+                  *
+ERROR at line 3:
+ORA-00921: unexpected end of SQL command 
+
+
+SQL> SELECT A, CT+CP+CL
+  2  B FROM ASIGNATURA;
+
+A                                                           B                   
+-------------------------------------------------- ----------                   
+BASE DE DATOS                                               6                   
+INTELIGENCIA ARTIFICIAL                                     6                   
+ALMACENES DE DATOS                                          3                   
+MINERIA DE DATOS                                            3                   
+INFORMATICA BASICA                                          6                   
+ALGEBRA                                                     6                   
+CALCULO                                                     6                   
+OPTIMIZACION                                                6                   
+GESTION DE RIESGOS                                          6                   
+ASTRONOMIA                                                  6                   
+ENSENANZA DE LA MATEMATICA                                  6                   
+
+A                                                           B                   
+-------------------------------------------------- ----------                   
+ANALISIS COMPLEJO                                         7.5                   
+
+12 rows selected.
+
+SQL> SELECT A, CT+CP+CL B
+  2  FROM ASIGNATURA
+  3  WHERE B = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA;
+WHERE B = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA
+           *
+ERROR at line 3:
+ORA-00921: unexpected end of SQL command 
+
+
+SQL> SELECT A, CT+CP+CL B
+  2  FROM ASIGNATURA
+  3  WHERE B = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA);
+WHERE B = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA)
+      *
+ERROR at line 3:
+ORA-00904: "B": invalid identifier 
+
+
+SQL> SELECT A, CT+CP+CL
+  2  FROM ASIGNATURA
+  3  WHERE (CT+CP+CL) = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA);
+
+A                                                    CT+CP+CL                   
+-------------------------------------------------- ----------                   
+ANALISIS COMPLEJO                                         7.5                   
+
+SQL> AHORA 16
+SP2-0042: unknown command "AHORA 16" - rest of line ignored.
+SQL> 15 DE NUEVO
+SQL> ;
+  1  SELECT A, CT+CP+CL
+  2  FROM ASIGNATURA
+  3  WHERE (CT+CP+CL) = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA)
+  4* DE NUEVO
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE (CT+CP+CL) = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA);
+
+A                                                                               
+--------------------------------------------------                              
+ANALISIS COMPLEJO                                                               
+
+SQL> 16
+SP2-0226: Invalid line number 
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE (CT+CP+CL) = (SELECT MIN(CT+CP+CL) FROM ASIGNATURA);
+
+A                                                                               
+--------------------------------------------------                              
+ALMACENES DE DATOS                                                              
+MINERIA DE DATOS                                                                
+
+SQL> 17
+SP2-0226: Invalid line number 
+SQL> SELECT AR
+  2  FROM AREA NATURAL JOIN ASIGNATURA
+  3  WHERE (CT+CP+CL) = (SELECT MAX(CT+CP+CL) FROM ASIGNATURA);
+
+AR                                                                              
+------------------------------------------------------------                    
+ANALISIS MATEMATICO                                                             
+
+SQL> 18
+SP2-0226: Invalid line number 
+SQL> SELECT COUNT(DISTINCT CAS)
+  2  FROM PLAN_DOCENTE
+  3  WHERE DNI=1111;
+
+COUNT(DISTINCTCAS)                                                              
+------------------                                                              
+                 1                                                              
+
+SQL> 19
+SP2-0226: Invalid line number 
+SQL> SELECT CTA+CPA+CLA CREDITOS IMPARTIDOS
+  2  FROM PLAN_DOCENTE
+  3  WHERE DNI=1111;
+SELECT CTA+CPA+CLA CREDITOS IMPARTIDOS
+                            *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT CTA+CPA+CLA CREDITOS_IMPARTIDOS
+  2  FROM PLAN_DOCENTE
+  3  WHERE DNI=1111;
+
+CREDITOS_IMPARTIDOS                                                             
+-------------------                                                             
+                  6                                                             
+                  3                                                             
+
+SQL> SELECT SUM(CTA+CPA+CLA) CREDITOS_IMPARTIDOS
+  2  FROM PLAN_DOCENTE
+  3  WHERE DNI=1111;
+
+CREDITOS_IMPARTIDOS                                                             
+-------------------                                                             
+                  9                                                             
+
+SQL> 20
+SP2-0226: Invalid line number 
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE SUM(CTA+CPA+CLA) = (SELECT MAX(SUM(CTA+CPA+CLA) FROM PLAN_DOCENTE);
+WHERE SUM(CTA+CPA+CLA) = (SELECT MAX(SUM(CTA+CPA+CLA) FROM PLAN_DOCENTE)
+      *
+ERROR at line 3:
+ORA-00934: group function is not allowed here 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE FF IS NOT NULL AND ((CTA+CPA+CLA) = (SELECT MAX(SUM(CTA+CPA+CLA) FROM PLAN_DOCENTE));
+WHERE FF IS NOT NULL AND ((CTA+CPA+CLA) = (SELECT MAX(SUM(CTA+CPA+CLA) FROM PLAN_DOCENTE))
+                                        *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE FF IS NOT NULL AND (CTA+CPA+CLA) = (SELECT MAX(SUM(CTA+CPA+CLA) FROM PLAN_DOCENTE);
+WHERE FF IS NOT NULL AND (CTA+CPA+CLA) = (SELECT MAX(SUM(CTA+CPA+CLA) FROM PLAN_DOCENTE)
+                                          *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT MAX(SUM(CTA+CPA+CLA)
+  2  FROM PLAN_DOCENTE;
+FROM PLAN_DOCENTE
+*
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE FF IS NOT NULL AND (CTA+CPA+CLA) = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE);
+WHERE FF IS NOT NULL AND (CTA+CPA+CLA) = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE)
+                                                     *
+ERROR at line 3:
+ORA-00978: nested group function without GROUP BY 
+
+
+SQL> SELECT MAX(SUM(CTA+CPA+CLA))
+  2  FROM PLAN_DOCENTE;
+SELECT MAX(SUM(CTA+CPA+CLA))
+           *
+ERROR at line 1:
+ORA-00978: nested group function without GROUP BY 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE FF IS NOT NULL AND (CTA+CPA+CLA) = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE WHERE FFIS NOT NULL GROUP BY DNI);
+WHERE FF IS NOT NULL AND (CTA+CPA+CLA) = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE WHERE FFIS NOT NULL GROUP BY DNI)
+                                                                                                        *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE FF IS NOT NULL AND (CTA+CPA+CLA) = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI);
+
+no rows selected
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  DASDASD;
+
+P                                                                               
+------------------------------------------------------------                    
+DAVID                                                                           
+DAVID                                                                           
+DAVID                                                                           
+JUAN                                                                            
+JUAN                                                                            
+SOLEDAD                                                                         
+CARLOS                                                                          
+CARLOS                                                                          
+JOSE MANUEL                                                                     
+PEDRO                                                                           
+PEDRO                                                                           
+
+P                                                                               
+------------------------------------------------------------                    
+MARIA                                                                           
+MARIA                                                                           
+MARIA                                                                           
+IVAN                                                                            
+CARMEN                                                                          
+MARIO                                                                           
+FRANCISCO                                                                       
+ANGELA                                                                          
+
+19 rows selected.
+
+SQL> SELECT PROFESOR.P
+  2  FROM (SELECT DNI, MAX(SUM(CTA+CPA+CLA)) B FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI)
+  3  NATURAL JOIN PROFESOR
+  4  WHERE FF IS NOT NULL AND B = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI);
+WHERE FF IS NOT NULL AND B = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI)
+      *
+ERROR at line 4:
+ORA-00904: "FF": invalid identifier 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM (SELECT DNI, MAX(SUM(CTA+CPA+CLA)) B FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI)
+  3  NATURAL JOIN PROFESOR
+  4  WHERE B = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI);
+FROM (SELECT DNI, MAX(SUM(CTA+CPA+CLA)) B FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI)
+             *
+ERROR at line 2:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT DNI, MAX(SUM(CTA+CPA+CLA))
+  2  FROM PLAN_DOCENTE
+  3  GROUP BY DNI;
+SELECT DNI, MAX(SUM(CTA+CPA+CLA))
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT DNI, MAX(SUM(CTA+CPA+CLA))
+  2  FROM PLAN_DOCENTE
+  3  ORDER BY DNI;
+SELECT DNI, MAX(SUM(CTA+CPA+CLA))
+                *
+ERROR at line 1:
+ORA-00978: nested group function without GROUP BY 
+
+
+SQL> SELECT DNI, MAX(SUM(CTA+CPA+CLA))
+  2  FROM PLAN_DOCENTE
+  3  GROUP BY DNI;
+SELECT DNI, MAX(SUM(CTA+CPA+CLA))
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT DNI, MAX(SUM(CTA+CPA+CLA))
+  2  FROM PLAN_DOCENTE
+  3  GROUP BY SUM(CTA+CPA+CLA);
+GROUP BY SUM(CTA+CPA+CLA)
+         *
+ERROR at line 3:
+ORA-00934: group function is not allowed here 
+
+
+SQL> SELECT DNI, MAX(SUM(CTA+CPA+CLA))
+  2  FROM PLAN_DOCENTE
+  3  GROUP BY (CTA+CPA+CLA);
+SELECT DNI, MAX(SUM(CTA+CPA+CLA))
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM (SELECT DNI, MAX(SUM(CTA+CPA+CLA)) B FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI)
+  3  WHERE B = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI);
+SELECT PROFESOR.P
+       *
+ERROR at line 1:
+ORA-00904: "PROFESOR"."P": invalid identifier 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM (SELECT DNI, MAX(SUM(CTA+CPA+CLA)) B FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI) NATURAL JOIN PROFESOR
+  3  WHERE B = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI);
+FROM (SELECT DNI, MAX(SUM(CTA+CPA+CLA)) B FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI) NATURAL JOIN PROFESOR
+             *
+ERROR at line 2:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT PROFESOR.P
+  2  WHERE B = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI);
+WHERE B = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI)
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM (SELECT DNI, MAX(SUM(CTA+CPA+CLA)) B FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI) NATURAL JOIN PROFESOR
+  3  SELECT PROFESOR.P
+  4  ;
+SELECT PROFESOR.P
+*
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM (SELECT DNI, MAX(SUM(CTA+CPA+CLA)) B FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI ORDER BY DNI) NATURAL JOIN PROFESOR
+  3  WHERE B = (SELECT MAX(SUM(CTA+CPA+CLA)) FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI);
+FROM (SELECT DNI, MAX(SUM(CTA+CPA+CLA)) B FROM PLAN_DOCENTE WHERE FF IS NOT NULL GROUP BY DNI ORDER BY DNI) NATURAL JOIN PROFESOR
+             *
+ERROR at line 2:
+ORA-00937: not a single-group group function 
+
+
+SQL> NI IDEA
+SP2-0042: unknown command "NI IDEA" - rest of line ignored.
+SQL> 21
+SP2-0226: Invalid line number 
+SQL> SELECT AVG(SUM(COUNT(CAR)))
+  2  FROM ASIGNATURA;
+SELECT AVG(SUM(COUNT(CAR)))
+               *
+ERROR at line 1:
+ORA-00935: group function is nested too deeply 
+
+
+SQL> SELECT COUNT(CAR)
+  2  FROM ASIGNATURA;
+
+COUNT(CAR)                                                                      
+----------                                                                      
+        12                                                                      
+
+SQL> 
+SQL> SELECT COUNT(CAR)
+  2  FROM ASIGNATURA
+  3  GROUP BY CAR;
+
+COUNT(CAR)                                                                      
+----------                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+         2                                                                      
+         1                                                                      
+         1                                                                      
+         4                                                                      
+         1                                                                      
+
+8 rows selected.
+
+SQL> SELECT AR, COUNT(CAR)
+  2  FROM ASIGNATURA NATURAL JOIN AREA
+  3  GROUP BY CAR;
+SELECT AR, COUNT(CAR)
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT AR, COUNT(CAR)
+  2  FROM ASIGNATURA NATURAL JOIN AREA
+  3  GROUP BY AR;
+
+AR                                                           COUNT(CAR)         
+------------------------------------------------------------ ----------         
+ALGEBRA                                                               1         
+ASTRONOMIA Y ASTROFISICA                                              1         
+CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                  2         
+ANALISIS MATEMATICO                                                   1         
+ESTADISTICA E INVESTIGACION OPERATIVA                                 1         
+DIDACTICA DE LA MATEMATICA                                            1         
+LENGUAJES Y SISTEMAS INFORMATICOS                                     4         
+MATEMATICA APLICADA                                                   1         
+
+8 rows selected.
+
+SQL> SELECT AVG(SUM(B))
+  2  FROM (SELECT AR, COUNT(CAR) B FROM ASIGNATURA NATURAL JOIN AREA GROUP BY CAR);
+FROM (SELECT AR, COUNT(CAR) B FROM ASIGNATURA NATURAL JOIN AREA GROUP BY CAR)
+             *
+ERROR at line 2:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT AVG(SUM(B))
+  2  FROM (SELECT AR, COUNT(CAR) B FROM ASIGNATURA NATURAL JOIN AREA GROUP BY CAR)
+  3  GROUP BY AR;
+FROM (SELECT AR, COUNT(CAR) B FROM ASIGNATURA NATURAL JOIN AREA GROUP BY CAR)
+             *
+ERROR at line 2:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SPOOL OFF
