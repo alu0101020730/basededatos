@@ -1,0 +1,806 @@
+SQL> SELECT DNI
+  2  FROM PROFESOR
+  3  WHERE P LIKE '__R%';
+
+       DNI                                                                      
+----------                                                                      
+      2222                                                                      
+      4444                                                                      
+      6666                                                                      
+      7777                                                                      
+
+SQL> SELECT DISTINCT DNI
+  2  FROM PROFESOR
+  3  WHERE P LIKE '_____';
+
+       DNI                                                                      
+----------                                                                      
+      3333                                                                      
+      4444                                                                      
+      7777                                                                      
+      1010                                                                      
+
+SQL> SELECT DISTINCT DNI
+  2  FROM PROFESOR
+  3  WHERE P LIKE '_____%';
+
+       DNI                                                                      
+----------                                                                      
+      2222                                                                      
+      3333                                                                      
+      4444                                                                      
+      6666                                                                      
+      7777                                                                      
+      8888                                                                      
+      9999                                                                      
+      1010                                                                      
+      2020                                                                      
+      3030                                                                      
+
+10 rows selected.
+
+SQL> SELECT *
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE;
+
+       DNI P                                                                    
+---------- ------------------------------------------------------------         
+       CAR CAT          CAS        CTA        CPA        CLA FI        FF       
+---------- ----- ---------- ---------- ---------- ---------- --------- ---------
+      4444 MARIA                                                                
+         7 TU             1          3        1.5        1.5 01-SEP-11          
+                                                                                
+      4444 MARIA                                                                
+         7 TU             4        1.5          0        1.5 01-SEP-08 31-AUG-10
+                                                                                
+      4444 MARIA                                                                
+         7 TU             5          3          0          0 01-SEP-10          
+                                                                                
+
+       DNI P                                                                    
+---------- ------------------------------------------------------------         
+       CAR CAT          CAS        CTA        CPA        CLA FI        FF       
+---------- ----- ---------- ---------- ---------- ---------- --------- ---------
+      1111 JUAN                                                                 
+         6 CU             8          3        1.5        1.5 01-SEP-07 31-AUG-09
+                                                                                
+      1111 JUAN                                                                 
+         6 CU             8          3          0          0 01-SEP-09          
+                                                                                
+      3030 JOSE MANUEL                                                          
+         6 TEU            8          0        1.5        1.5 01-SEP-09          
+                                                                                
+
+       DNI P                                                                    
+---------- ------------------------------------------------------------         
+       CAR CAT          CAS        CTA        CPA        CLA FI        FF       
+---------- ----- ---------- ---------- ---------- ---------- --------- ---------
+      2222 CARLOS                                                               
+         7 TU             4        1.5          0        1.5 01-SEP-09          
+                                                                                
+      2222 CARLOS                                                               
+         7 TU             3        1.5          0        1.5 01-SEP-06 31-AUG-07
+                                                                                
+      1010 DAVID                                                                
+         4 TU             2        1.5        1.5          3 01-SEP-05 31-AUG-08
+                                                                                
+
+       DNI P                                                                    
+---------- ------------------------------------------------------------         
+       CAR CAT          CAS        CTA        CPA        CLA FI        FF       
+---------- ----- ---------- ---------- ---------- ---------- --------- ---------
+      3333 PEDRO                                                                
+         4 TEU            2        1.5        1.5          3 01-SEP-08          
+                                                                                
+      1010 DAVID                                                                
+         4 TU             9          3          0          3 01-SEP-08 31-AUG-09
+                                                                                
+      1010 DAVID                                                                
+         4 TU             9        1.5          0        1.5 01-SEP-09          
+                                                                                
+
+       DNI P                                                                    
+---------- ------------------------------------------------------------         
+       CAR CAT          CAS        CTA        CPA        CLA FI        FF       
+---------- ----- ---------- ---------- ---------- ---------- --------- ---------
+      9999 ANGELA                                                               
+         8 TEU            7          3          3          0 01-SEP-10          
+                                                                                
+      5555 IVAN                                                                 
+         1 CEU            6          3          3          0 31-MAR-10          
+                                                                                
+      6666 CARMEN                                                               
+         3 CD            10          3        1.5        1.5 01-SEP-08 31-AUG-11
+                                                                                
+
+       DNI P                                                                    
+---------- ------------------------------------------------------------         
+       CAR CAT          CAS        CTA        CPA        CLA FI        FF       
+---------- ----- ---------- ---------- ---------- ---------- --------- ---------
+      8888 FRANCISCO                                                            
+         5 TU            11          6          0          0 01-SEP-09          
+                                                                                
+      2020 SOLEDAD                                                              
+         7 CU             3        1.5          0        1.5 01-SEP-08          
+                                                                                
+      7777 MARIO                                                                
+         2 TU            12        4.5          3          0 01-SEP-10          
+                                                                                
+
+       DNI P                                                                    
+---------- ------------------------------------------------------------         
+       CAR CAT          CAS        CTA        CPA        CLA FI        FF       
+---------- ----- ---------- ---------- ---------- ---------- --------- ---------
+      3333 PEDRO                                                                
+         4 TEU            9        1.5          0        1.5 01-SEP-09          
+                                                                                
+
+19 rows selected.
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE FF=NULL;
+
+no rows selected
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE FF='NULL';
+WHERE FF='NULL'
+         *
+ERROR at line 3:
+ORA-01858: a non-numeric character was found where a numeric was expected 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE FF IS NULL;
+
+P                                                                               
+------------------------------------------------------------                    
+MARIA                                                                           
+MARIA                                                                           
+JUAN                                                                            
+JOSE MANUEL                                                                     
+CARLOS                                                                          
+PEDRO                                                                           
+DAVID                                                                           
+ANGELA                                                                          
+IVAN                                                                            
+FRANCISCO                                                                       
+SOLEDAD                                                                         
+
+P                                                                               
+------------------------------------------------------------                    
+MARIO                                                                           
+PEDRO                                                                           
+
+13 rows selected.
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE CAS=8;
+
+P                                                                               
+------------------------------------------------------------                    
+JUAN                                                                            
+JUAN                                                                            
+JOSE MANUEL                                                                     
+
+SQL> SELECT DISTINCT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE CAS=8;
+
+P                                                                               
+------------------------------------------------------------                    
+JUAN                                                                            
+JOSE MANUEL                                                                     
+
+SQL> SELECT *
+  2  FROM PLAN_DOCENTE
+  3  ORDER BY FF ASC;
+
+       DNI        CAS        CTA        CPA        CLA FI        FF             
+---------- ---------- ---------- ---------- ---------- --------- ---------      
+      2222          3        1.5          0        1.5 01-SEP-06 31-AUG-07      
+      1010          2        1.5        1.5          3 01-SEP-05 31-AUG-08      
+      1010          9          3          0          3 01-SEP-08 31-AUG-09      
+      1111          8          3        1.5        1.5 01-SEP-07 31-AUG-09      
+      4444          4        1.5          0        1.5 01-SEP-08 31-AUG-10      
+      6666         10          3        1.5        1.5 01-SEP-08 31-AUG-11      
+      1010          9        1.5          0        1.5 01-SEP-09                
+      9999          7          3          3          0 01-SEP-10                
+      5555          6          3          3          0 31-MAR-10                
+      8888         11          6          0          0 01-SEP-09                
+      2020          3        1.5          0        1.5 01-SEP-08                
+
+       DNI        CAS        CTA        CPA        CLA FI        FF             
+---------- ---------- ---------- ---------- ---------- --------- ---------      
+      7777         12        4.5          3          0 01-SEP-10                
+      3333          9        1.5          0        1.5 01-SEP-09                
+      2222          4        1.5          0        1.5 01-SEP-09                
+      3030          8          0        1.5        1.5 01-SEP-09                
+      1111          8          3          0          0 01-SEP-09                
+      4444          5          3          0          0 01-SEP-10                
+      4444          1          3        1.5        1.5 01-SEP-11                
+      3333          2        1.5        1.5          3 01-SEP-08                
+
+19 rows selected.
+
+SQL> SELECT *
+  2  FROM PLAN_DOCENTE
+  3  ORDER BY FF DESC;
+
+       DNI        CAS        CTA        CPA        CLA FI        FF             
+---------- ---------- ---------- ---------- ---------- --------- ---------      
+      4444          1          3        1.5        1.5 01-SEP-11                
+      3333          2        1.5        1.5          3 01-SEP-08                
+      7777         12        4.5          3          0 01-SEP-10                
+      2020          3        1.5          0        1.5 01-SEP-08                
+      8888         11          6          0          0 01-SEP-09                
+      5555          6          3          3          0 31-MAR-10                
+      9999          7          3          3          0 01-SEP-10                
+      4444          5          3          0          0 01-SEP-10                
+      1111          8          3          0          0 01-SEP-09                
+      3030          8          0        1.5        1.5 01-SEP-09                
+      2222          4        1.5          0        1.5 01-SEP-09                
+
+       DNI        CAS        CTA        CPA        CLA FI        FF             
+---------- ---------- ---------- ---------- ---------- --------- ---------      
+      3333          9        1.5          0        1.5 01-SEP-09                
+      1010          9        1.5          0        1.5 01-SEP-09                
+      6666         10          3        1.5        1.5 01-SEP-08 31-AUG-11      
+      4444          4        1.5          0        1.5 01-SEP-08 31-AUG-10      
+      1010          9          3          0          3 01-SEP-08 31-AUG-09      
+      1111          8          3        1.5        1.5 01-SEP-07 31-AUG-09      
+      1010          2        1.5        1.5          3 01-SEP-05 31-AUG-08      
+      2222          3        1.5          0        1.5 01-SEP-06 31-AUG-07      
+
+19 rows selected.
+
+SQL> SELECT DISTINCT PROFESOR.P
+  2  FROM ASIGNATURA NATURAL JOIN PROFESOR
+  3  WHERE T='GII' AND A='OPTIMIZACION'
+  4  ORDER BY PROFESOR.P ASC;
+
+P                                                                               
+------------------------------------------------------------                    
+JOSE MANUEL                                                                     
+JUAN                                                                            
+
+SQL> SELECT DISTINCT PROFESOR.P
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR
+  3  WHERE D='MATEMATICA FUNDAMENTAL'
+  4  ORDER PROFESOR.P DESC;
+ORDER PROFESOR.P DESC
+      *
+ERROR at line 4:
+ORA-00924: missing BY keyword 
+
+
+SQL> SELECT DISTINCT PROFESOR.P
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR
+  3  WHERE D='MATEMATICA FUNDAMENTAL'
+  4  ORDER BY PROFESOR.P DESC;
+
+P                                                                               
+------------------------------------------------------------                    
+IVAN                                                                            
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA
+  3  WHERE DNI=1010JSFHKSJFH
+  4  ;
+WHERE DNI=1010JSFHKSJFH
+              *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT ASIGNATURA.A
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA
+  3  WHERE DNI=1010;
+
+A                                                                               
+--------------------------------------------------                              
+INTELIGENCIA ARTIFICIAL                                                         
+GESTION DE RIESGOS                                                              
+
+SQL> SELECT ASIGNATURA.A
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA
+  3  WHERE PROFESOR.P LIKE 'DAVID';
+
+A                                                                               
+--------------------------------------------------                              
+INTELIGENCIA ARTIFICIAL                                                         
+GESTION DE RIESGOS                                                              
+
+SQL> SELECT AREA.AR
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA
+  3  WHERE DEPARTAMENTO.D LIKE 'ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION';
+
+AR                                                                              
+------------------------------------------------------------                    
+CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                            
+ESTADISTICA E INVESTIGACION OPERATIVA                                           
+LENGUAJES Y SISTEMAS INFORMATICOS                                               
+
+SQL> SELECT ASIGNATURA.A
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA
+  3  NATURAL JOIN PLAN_DOCENTE
+  4  WHERE PLAN_DOCENTE.FF IS NOT NULL AND PROFESOR.CAT LIKE 'CU';
+
+A                                                                               
+--------------------------------------------------                              
+OPTIMIZACION                                                                    
+
+SQL> SELECT ASIGNATURA.A
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA NATURAL JOIN PLAN_DOCENTE
+  3  WHERE PLAN_DOCENTE.FF IS NULL AND PROFESOR.CAT LIKE 'CU';
+
+A                                                                               
+--------------------------------------------------                              
+OPTIMIZACION                                                                    
+ALMACENES DE DATOS                                                              
+
+SQL> MEJOR MANERA AHORA;
+SP2-0734: unknown command beginning "MEJOR MANE..." - rest of line ignored.
+SQL> NVM ESTA DE PUTA MADRE;
+SP2-0734: unknown command beginning "NVM ESTA D..." - rest of line ignored.
+SQL> EL 17 NO SE AUN;
+SP2-0734: unknown command beginning "EL 17 NO S..." - rest of line ignored.
+SQL> SELECT ASIGNATURA.A
+  2  FROM AREA NATURAL JOIN ASIGNATURA
+  3  WHERE AREA.AR LIKE 'LENGUAJES Y SISTEMAS INFORMATICOS' OR AREA.AR LIKE 'CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL';
+
+A                                                                               
+--------------------------------------------------                              
+GESTION DE RIESGOS                                                              
+INTELIGENCIA ARTIFICIAL                                                         
+INFORMATICA BASICA                                                              
+MINERIA DE DATOS                                                                
+ALMACENES DE DATOS                                                              
+BASE DE DATOS                                                                   
+
+6 rows selected.
+
+SQL> SELECT ASIGNATURA.A
+  2  FROM AREA NATURAL JOIN ASIGNATURA
+  3  WHERE AREA.AR LIKE 'LENGUAJES Y SISTEMAS INFORMATICOS' AND AREA.AR LIKE 'CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL';
+
+no rows selected
+
+SQL> EL SEGUDNO ES UNA PRUEBA;
+SP2-0734: unknown command beginning "EL SEGUDNO..." - rest of line ignored.
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA
+  3  WHERE T LIKE 'GII' OR LIKE 'MII';
+WHERE T LIKE 'GII' OR LIKE 'MII'
+                      *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA
+  3  WHERE ASIGNATURA.T LIKE 'GII' OR ASIGNATURA.T LIKE 'MII';
+
+no rows selected
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA
+  3  WHERE ASIGNATURA.T LIKE 'GII';
+
+no rows selected
+
+SQL> SELECT *
+  2  FROM ASIGNATURA;
+
+       CAS A                                                  T           CUR   
+---------- -------------------------------------------------- ---- ----------   
+       CAR         CT         CP         CL                                     
+---------- ---------- ---------- ----------                                     
+         1 BASE DE DATOS                                      GII           3   
+         7          3        1.5        1.5                                     
+                                                                                
+         2 INTELIGENCIA ARTIFICIAL                            GII           3   
+         4        1.5        1.5          3                                     
+                                                                                
+         3 ALMACENES DE DATOS                                 MII           1   
+         7        1.5          0        1.5                                     
+                                                                                
+
+       CAS A                                                  T           CUR   
+---------- -------------------------------------------------- ---- ----------   
+       CAR         CT         CP         CL                                     
+---------- ---------- ---------- ----------                                     
+         4 MINERIA DE DATOS                                   MII           1   
+         7        1.5          0        1.5                                     
+                                                                                
+         5 INFORMATICA BASICA                                 GII           1   
+         7          3        1.5        1.5                                     
+                                                                                
+         6 ALGEBRA                                            GII           1   
+         1          3          3          0                                     
+                                                                                
+
+       CAS A                                                  T           CUR   
+---------- -------------------------------------------------- ---- ----------   
+       CAR         CT         CP         CL                                     
+---------- ---------- ---------- ----------                                     
+         7 CALCULO                                            GII           1   
+         8          3          3          0                                     
+                                                                                
+         8 OPTIMIZACION                                       GII           1   
+         6          3        1.5        1.5                                     
+                                                                                
+         9 GESTION DE RIESGOS                                 GII           3   
+         4          3          0          3                                     
+                                                                                
+
+       CAS A                                                  T           CUR   
+---------- -------------------------------------------------- ---- ----------   
+       CAR         CT         CP         CL                                     
+---------- ---------- ---------- ----------                                     
+        10 ASTRONOMIA                                         GF            2   
+         3          3        1.5        1.5                                     
+                                                                                
+        11 ENSENANZA DE LA MATEMATICA                         GM            2   
+         5          6          0          0                                     
+                                                                                
+        12 ANALISIS COMPLEJO                                  GM            4   
+         2        4.5          3          0                                     
+                                                                                
+
+12 rows selected.
+
+SQL> SELECT CAS
+  2  FROM ASIGNATURA
+  3  WHERE T LIKE 'GII';
+
+no rows selected
+
+SQL> SELECT CAS
+  2  FROM ASIGNATURA
+  3  WHERE T='GII';
+
+       CAS                                                                      
+----------                                                                      
+         1                                                                      
+         2                                                                      
+         5                                                                      
+         6                                                                      
+         7                                                                      
+         8                                                                      
+         9                                                                      
+
+7 rows selected.
+
+SQL> SELECT CAS
+  2  FROM ASIGNATURA
+  3  WHERE T LIKE GII;
+WHERE T LIKE GII
+             *
+ERROR at line 3:
+ORA-00904: "GII": invalid identifier 
+
+
+SQL> SELECT CAS
+  2  FROM ASIGNATURA
+  3  WHERE T LIKE 'GII';
+
+no rows selected
+
+SQL> SELECT CAS
+  2  FROM ASIGNATURA
+  3  WHERE T='GII';
+
+       CAS                                                                      
+----------                                                                      
+         1                                                                      
+         2                                                                      
+         5                                                                      
+         6                                                                      
+         7                                                                      
+         8                                                                      
+         9                                                                      
+
+7 rows selected.
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA
+  3  WHERE ASIGNATURA.T='GII' OR ASIGNATURA.T='MII'SSASASA;
+WHERE ASIGNATURA.T='GII' OR ASIGNATURA.T='MII'SSASASA
+                                              *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA NATURAL JOIN PLAN_DOCENTE
+  3  WHERE (ASIGNATURA.T='GII' OR ASIGNATURA.T='MII') AND FF IS NULL;
+
+P                                                                               
+------------------------------------------------------------                    
+JUAN                                                                            
+CARLOS                                                                          
+PEDRO                                                                           
+PEDRO                                                                           
+MARIA                                                                           
+MARIA                                                                           
+IVAN                                                                            
+ANGELA                                                                          
+DAVID                                                                           
+SOLEDAD                                                                         
+JOSE MANUEL                                                                     
+
+11 rows selected.
+
+SQL> SELECT DISTINCT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA NATURAL JOIN PLAN_DOCENTE
+  3  WHERE (ASIGNATURA.T='GII' OR ASIGNATURA.T='MII') AND FF IS NULL;
+
+P                                                                               
+------------------------------------------------------------                    
+JUAN                                                                            
+PEDRO                                                                           
+SOLEDAD                                                                         
+CARLOS                                                                          
+IVAN                                                                            
+DAVID                                                                           
+MARIA                                                                           
+JOSE MANUEL                                                                     
+ANGELA                                                                          
+
+9 rows selected.
+
+SQL> SELECT DISTINCT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA NATURAL JOIN PLAN_DOCENTE
+  3  WHERE (ASIGNATURA.T='GII' AND ASIGNATURA.T='MII') AND FF IS NULL;
+
+no rows selected
+
+SQL> SELECT DISTINCT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA NATURAL JOIN PLAN_DOCENTE
+  3  WHERE ASIGNATURA.T='GII' AND ASIGNATURA.T='MII' AND FF IS NULL;
+
+no rows selected
+
+SQL> SELECT DISTINCT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN ASIGNATURA NATURAL JOIN PLAN_DOCENTE
+  3  WHERE ASIGNATURA.T='GII' AND FF IS NULL
+  4  INTERSECT
+  5  SELECT DISTINCT PROFESOR.P
+  6  FROM PROFESOR NATURAL JOIN ASIGNATURA NATURAL JOIN PLAN_DOCENTE
+  7  WHERE  ASIGNATURA.T='MII' AND FF IS NULL;
+
+no rows selected
+
+SQL> EL 20 TAMPOCO SE;
+SP2-0734: unknown command beginning "EL 20 TAMP..." - rest of line ignored.
+SQL> SELECT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE FF IS NOT NULL;
+
+P                                                                               
+------------------------------------------------------------                    
+JUAN                                                                            
+CARLOS                                                                          
+MARIA                                                                           
+CARMEN                                                                          
+DAVID                                                                           
+DAVID                                                                           
+
+6 rows selected.
+
+SQL> SELECT DISTINCT PROFESOR.P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE FF IS NOT NULL
+  4  MINUS
+  5  SELECT DISTINCT PROFESOR.P
+  6  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  7  WHERE FF IS NULL;
+
+P                                                                               
+------------------------------------------------------------                    
+CARMEN                                                                          
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE T LIKE 'GII';
+
+no rows selected
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE T='GII';
+
+A                                                                               
+--------------------------------------------------                              
+BASE DE DATOS                                                                   
+INTELIGENCIA ARTIFICIAL                                                         
+INFORMATICA BASICA                                                              
+ALGEBRA                                                                         
+CALCULO                                                                         
+OPTIMIZACION                                                                    
+GESTION DE RIESGOS                                                              
+
+7 rows selected.
+
+SQL> SELECT AREA.AR,ASIGNATURA.A
+  2  FROM AREA NATURAL JOIN ASIGNATURA;
+
+AR                                                                              
+------------------------------------------------------------                    
+A                                                                               
+--------------------------------------------------                              
+ALGEBRA                                                                         
+ALGEBRA                                                                         
+                                                                                
+ANALISIS MATEMATICO                                                             
+ANALISIS COMPLEJO                                                               
+                                                                                
+ASTRONOMIA Y ASTROFISICA                                                        
+ASTRONOMIA                                                                      
+                                                                                
+
+AR                                                                              
+------------------------------------------------------------                    
+A                                                                               
+--------------------------------------------------                              
+CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                            
+GESTION DE RIESGOS                                                              
+                                                                                
+CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                            
+INTELIGENCIA ARTIFICIAL                                                         
+                                                                                
+DIDACTICA DE LA MATEMATICA                                                      
+ENSENANZA DE LA MATEMATICA                                                      
+                                                                                
+
+AR                                                                              
+------------------------------------------------------------                    
+A                                                                               
+--------------------------------------------------                              
+ESTADISTICA E INVESTIGACION OPERATIVA                                           
+OPTIMIZACION                                                                    
+                                                                                
+LENGUAJES Y SISTEMAS INFORMATICOS                                               
+INFORMATICA BASICA                                                              
+                                                                                
+LENGUAJES Y SISTEMAS INFORMATICOS                                               
+MINERIA DE DATOS                                                                
+                                                                                
+
+AR                                                                              
+------------------------------------------------------------                    
+A                                                                               
+--------------------------------------------------                              
+LENGUAJES Y SISTEMAS INFORMATICOS                                               
+ALMACENES DE DATOS                                                              
+                                                                                
+LENGUAJES Y SISTEMAS INFORMATICOS                                               
+BASE DE DATOS                                                                   
+                                                                                
+MATEMATICA APLICADA                                                             
+CALCULO                                                                         
+                                                                                
+
+12 rows selected.
+
+SQL> SET LINESIZE 120
+SQL> ;
+  1  SELECT AREA.AR,ASIGNATURA.A
+  2* FROM AREA NATURAL JOIN ASIGNATURA
+SQL> RUN
+  1  SELECT AREA.AR,ASIGNATURA.A
+  2* FROM AREA NATURAL JOIN ASIGNATURA
+
+AR                                                           A                                                          
+------------------------------------------------------------ --------------------------------------------------         
+ALGEBRA                                                      ALGEBRA                                                    
+ANALISIS MATEMATICO                                          ANALISIS COMPLEJO                                          
+ASTRONOMIA Y ASTROFISICA                                     ASTRONOMIA                                                 
+CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL         GESTION DE RIESGOS                                         
+CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL         INTELIGENCIA ARTIFICIAL                                    
+DIDACTICA DE LA MATEMATICA                                   ENSENANZA DE LA MATEMATICA                                 
+ESTADISTICA E INVESTIGACION OPERATIVA                        OPTIMIZACION                                               
+LENGUAJES Y SISTEMAS INFORMATICOS                            INFORMATICA BASICA                                         
+LENGUAJES Y SISTEMAS INFORMATICOS                            MINERIA DE DATOS                                           
+LENGUAJES Y SISTEMAS INFORMATICOS                            ALMACENES DE DATOS                                         
+LENGUAJES Y SISTEMAS INFORMATICOS                            BASE DE DATOS                                              
+
+AR                                                           A                                                          
+------------------------------------------------------------ --------------------------------------------------         
+MATEMATICA APLICADA                                          CALCULO                                                    
+
+12 rows selected.
+
+SQL> SELECT DEP.D, AREA.AR
+  2  FROM DEPARTAMENTO DEP NATURAL JOIN AREA
+  3  ORDER BY DEP.D, AREA.AR ASC;
+
+D                                                                                                                       
+------------------------------------------------------------                                                            
+AR                                                                                                                      
+------------------------------------------------------------                                                            
+ANALISIS MATEMATICO                                                                                                     
+ANALISIS MATEMATICO                                                                                                     
+                                                                                                                        
+ANALISIS MATEMATICO                                                                                                     
+DIDACTICA DE LA MATEMATICA                                                                                              
+                                                                                                                        
+ANALISIS MATEMATICO                                                                                                     
+MATEMATICA APLICADA                                                                                                     
+                                                                                                                        
+
+D                                                                                                                       
+------------------------------------------------------------                                                            
+AR                                                                                                                      
+------------------------------------------------------------                                                            
+ASTROFISICA                                                                                                             
+ASTRONOMIA Y ASTROFISICA                                                                                                
+                                                                                                                        
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                                                                      
+CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                                                                    
+                                                                                                                        
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                                                                      
+ESTADISTICA E INVESTIGACION OPERATIVA                                                                                   
+                                                                                                                        
+
+D                                                                                                                       
+------------------------------------------------------------                                                            
+AR                                                                                                                      
+------------------------------------------------------------                                                            
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                                                                      
+LENGUAJES Y SISTEMAS INFORMATICOS                                                                                       
+                                                                                                                        
+MATEMATICA FUNDAMENTAL                                                                                                  
+ALGEBRA                                                                                                                 
+                                                                                                                        
+
+8 rows selected.
+
+SQL> SET LINESIZE 160
+SQL> RUN
+  1  SELECT DEP.D, AREA.AR
+  2  FROM DEPARTAMENTO DEP NATURAL JOIN AREA
+  3* ORDER BY DEP.D, AREA.AR ASC
+
+D                                                            AR                                                                                                 
+------------------------------------------------------------ ------------------------------------------------------------                                       
+ANALISIS MATEMATICO                                          ANALISIS MATEMATICO                                                                                
+ANALISIS MATEMATICO                                          DIDACTICA DE LA MATEMATICA                                                                         
+ANALISIS MATEMATICO                                          MATEMATICA APLICADA                                                                                
+ASTROFISICA                                                  ASTRONOMIA Y ASTROFISICA                                                                           
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                                               
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           ESTADISTICA E INVESTIGACION OPERATIVA                                                              
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           LENGUAJES Y SISTEMAS INFORMATICOS                                                                  
+MATEMATICA FUNDAMENTAL                                       ALGEBRA                                                                                            
+
+8 rows selected.
+
+SQL> SELECT DEP.D, PROFESOR.P
+  2  FROM DEPARTAMENTO DEP NATURAL JOIN AREA NATURAL JOIN PROFESOR
+  3  ORDER BY DEP.D, PROFESOR.P ASC;
+
+D                                                            P                                                                                                  
+------------------------------------------------------------ ------------------------------------------------------------                                       
+ANALISIS MATEMATICO                                          ANGELA                                                                                             
+ANALISIS MATEMATICO                                          FRANCISCO                                                                                          
+ANALISIS MATEMATICO                                          MARIO                                                                                              
+ASTROFISICA                                                  CARMEN                                                                                             
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           CARLOS                                                                                             
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           DAVID                                                                                              
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           JOSE MANUEL                                                                                        
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           JUAN                                                                                               
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           MARIA                                                                                              
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           PEDRO                                                                                              
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           SOLEDAD                                                                                            
+
+D                                                            P                                                                                                  
+------------------------------------------------------------ ------------------------------------------------------------                                       
+MATEMATICA FUNDAMENTAL                                       IVAN                                                                                               
+
+12 rows selected.
+
+SQL> SPOOL OFF

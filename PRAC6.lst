@@ -1,0 +1,516 @@
+SQL> SELECT EXTRACT(YEAR FROM FI)
+  2  FROM PLAN_DOCENTE;
+
+EXTRACT(YEARFROMFI)                                                             
+-------------------                                                             
+               2005                                                             
+               2008                                                             
+               2009                                                             
+               2007                                                             
+               2009                                                             
+               2008                                                             
+               2006                                                             
+               2009                                                             
+               2009                                                             
+               2008                                                             
+               2009                                                             
+
+EXTRACT(YEARFROMFI)                                                             
+-------------------                                                             
+               2011                                                             
+               2008                                                             
+               2010                                                             
+               2010                                                             
+               2008                                                             
+               2010                                                             
+               2009                                                             
+               2010                                                             
+
+19 rows selected.
+
+SQL> SELECT EXTRACT(MONTH FROM DI)
+  2  FROM PLAN_DOCENTE;
+SELECT EXTRACT(MONTH FROM DI)
+                          *
+ERROR at line 1:
+ORA-00904: "DI": invalid identifier 
+
+
+SQL> SELECT EXTRACT(MONTH FROM FI)
+  2  FROM PLAN_DOCENTE;
+
+EXTRACT(MONTHFROMFI)                                                            
+--------------------                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+
+EXTRACT(MONTHFROMFI)                                                            
+--------------------                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+                   3                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+                   9                                                            
+
+19 rows selected.
+
+SQL> SELECT EXTRACT(DAY FROM FI)
+  2  FROM PLAN_DOCENTE;
+
+EXTRACT(DAYFROMFI)                                                              
+------------------                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+
+EXTRACT(DAYFROMFI)                                                              
+------------------                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+                31                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+                 1                                                              
+
+19 rows selected.
+
+SQL> TO_CHAR(SYSDATE,'SS1000')
+SP2-0734: unknown command beginning "TO_CHAR(SY..." - rest of line ignored.
+SQL> TO_CHAR(SYSDATE,'HH24:Mi:SS')
+SP2-0734: unknown command beginning "TO_CHAR(SY..." - rest of line ignored.
+SQL> SYSDATE,'HH24:Mi:SS';
+SP2-0734: unknown command beginning "SYSDATE,'H..." - rest of line ignored.
+SQL> SELECT SYSDATE()
+  2  FROM AREA;
+SELECT SYSDATE()
+              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT SYSDATE();
+SELECT SYSDATE()
+              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT TO_CHAR(SYSDATE,'SS1000')
+  2  FROM PLAN_DOCENTE;
+SELECT TO_CHAR(SYSDATE,'SS1000')
+                       *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> SELECT TO_CHAR(SYSDATE,'HH:Mi:SS1000')
+  2  FROM PLAN_DOCENTE;
+SELECT TO_CHAR(SYSDATE,'HH:Mi:SS1000')
+                       *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> SELECT TO_CHAR(SYSDATE,'HH:Mi:SS1000') TODAY;
+SELECT TO_CHAR(SYSDATE,'HH:Mi:SS1000') TODAY
+                                           *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT TO_CHAR(SYSDATE,'HH:MM:SS') TODAY;
+SELECT TO_CHAR(SYSDATE,'HH:MM:SS') TODAY
+                                       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT TO_CHAR(SYSDATE,'HH:MM:SS')
+  2  FROM PLAN_DOCENTE;
+
+TO_CHAR(                                                                        
+--------                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+
+TO_CHAR(                                                                        
+--------                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+12:11:48                                                                        
+
+19 rows selected.
+
+SQL> SELECT TO_CHAR(SYSDATE,'SS')
+  2  FROM PLAN_DOCENTE;
+
+TO                                                                              
+--                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+
+TO                                                                              
+--                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+58                                                                              
+
+19 rows selected.
+
+SQL> SELECT TO_CHAR(SYSDATE,'SSSS')
+  2  FROM PLAN_DOCENTE;
+
+TO_C                                                                            
+----                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+
+TO_C                                                                            
+----                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+0404                                                                            
+
+19 rows selected.
+
+SQL> SELECT TO_CHAR(SYSDATE,'SS1000')
+  2  FROM PLAN_DOCENTE;
+SELECT TO_CHAR(SYSDATE,'SS1000')
+                       *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> SELECT TO_CHAR(SYSDATE,'SS1000')
+  2  FROM DUAL;
+SELECT TO_CHAR(SYSDATE,'SS1000')
+                       *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> SELECT TO_CHAR(SYSDATE,'SS')
+  2  FROM DUAL;
+
+TO                                                                              
+--                                                                              
+08                                                                              
+
+SQL> SELECT TO_CHAR(SYSDATE,'SS')
+  2  FROM DUAL;
+
+TO                                                                              
+--                                                                              
+13                                                                              
+
+SQL> SELECT TO_CHAR(SYSDATE,'SSSS')
+  2  FROM DUAL;
+
+TO_C                                                                            
+----                                                                            
+1818                                                                            
+
+SQL> SELECT TO_CHAR(SYSDATE,'SSSS')
+  2  FROM DUAL;
+
+TO_C                                                                            
+----                                                                            
+3030                                                                            
+
+SQL> SELECT TO_CHAR(SYSDATE,'SSS')
+  2  FROM DUAL;
+SELECT TO_CHAR(SYSDATE,'SSS')
+                       *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> TIMESTAMP(S)
+SP2-0734: unknown command beginning "TIMESTAMP(..." - rest of line ignored.
+SQL> SELECT TIMESTAMP(S) FROM DUAL;
+SELECT TIMESTAMP(S) FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: "TIMESTAMP": invalid identifier 
+
+
+SQL> SELECT SYSTEMSTAMP FROM DUAL;
+SELECT SYSTEMSTAMP FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: "SYSTEMSTAMP": invalid identifier 
+
+
+SQL> SELECT SYSTIMESTAMP FROM DUAL;
+
+SYSTIMESTAMP                                                                    
+---------------------------------------------------------------------------     
+21-NOV-18 12.34.09.584960 PM +00:00                                             
+
+SQL> SELECT TO_CHAR(SYSTIMESTAMP,'SSSS.FF') FROM DUAL;
+
+TO_CHAR(SYSTIM                                                                  
+--------------                                                                  
+0000.617885                                                                     
+
+SQL> SELECT TO_CHAR(SYSTIMESTAMP,'SSSS.F') FROM DUAL;
+SELECT TO_CHAR(SYSTIMESTAMP,'SSSS.F') FROM DUAL
+                            *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> SELECT TO_CHAR(SYSTIMESTAMP,'SSSS.FF') FROM DUAL;
+
+TO_CHAR(SYSTIM                                                                  
+--------------                                                                  
+3636.952915                                                                     
+
+SQL> SELECT TO_CHAR(SYSTIMESTAMP,'SS.FF') FROM DUAL;
+
+TO_CHAR(SYST                                                                    
+------------                                                                    
+47.289797                                                                       
+
+SQL> SELECT TO_CHAR(SYSTIMESTAMP,'MM:DD:YYYY') FROM DUAL;
+
+TO_CHAR(SY                                                                      
+----------                                                                      
+11:21:2018                                                                      
+
+SQL> SELECT TO_CHAR(SYSTIMESTAMP,'HH:Mi:SS') FROM DUAL;
+
+TO_CHAR(                                                                        
+--------                                                                        
+12:39:01                                                                        
+
+SQL> SELECT TO_CHAR(SYSTIMESTAMP,'DD:MM:YYYY') FROM DUAL;
+
+TO_CHAR(SY                                                                      
+----------                                                                      
+21:11:2018                                                                      
+
+SQL> SELECT TO_CHAR(SYSTIMESTAMP,'HH24:Mi:SS') FROM DUAL;
+
+TO_CHAR(                                                                        
+--------                                                                        
+12:40:08                                                                        
+
+SQL> SELECT FI, DATEADD(day-month-year,-SELECT TO_CHAR(SYSTIMESTAMP,'SSSS.FF') FROM DUAL, FI) FROM PLAN_DOCENTE;
+SELECT FI, DATEADD(day-month-year,-SELECT TO_CHAR(SYSTIMESTAMP,'SSSS.FF') FROM DUAL, FI) FROM PLAN_DOCENTE
+                                   *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT SYSDATE-FI FROM PLAN_DOCENTE;
+
+SYSDATE-FI                                                                      
+----------                                                                      
+4829.53297                                                                      
+3733.53297                                                                      
+3368.53297                                                                      
+4099.53297                                                                      
+3368.53297                                                                      
+3733.53297                                                                      
+4464.53297                                                                      
+3368.53297                                                                      
+3368.53297                                                                      
+3733.53297                                                                      
+3368.53297                                                                      
+
+SYSDATE-FI                                                                      
+----------                                                                      
+2638.53297                                                                      
+3733.53297                                                                      
+3003.53297                                                                      
+3157.53297                                                                      
+3733.53297                                                                      
+3003.53297                                                                      
+3368.53297                                                                      
+3003.53297                                                                      
+
+19 rows selected.
+
+SQL> SELECT SYSDATE-FI FROM PLAN_DOCENTE
+  2  WHERE DNI=8888;
+
+SYSDATE-FI                                                                      
+----------                                                                      
+3368.53351                                                                      
+
+SQL> SELECT P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE SYSDATE-FI>365;
+
+P                                                                               
+------------------------------------------------------------                    
+JUAN                                                                            
+JUAN                                                                            
+CARLOS                                                                          
+CARLOS                                                                          
+PEDRO                                                                           
+PEDRO                                                                           
+MARIA                                                                           
+MARIA                                                                           
+MARIA                                                                           
+IVAN                                                                            
+CARMEN                                                                          
+
+P                                                                               
+------------------------------------------------------------                    
+MARIO                                                                           
+FRANCISCO                                                                       
+ANGELA                                                                          
+DAVID                                                                           
+DAVID                                                                           
+DAVID                                                                           
+SOLEDAD                                                                         
+JOSE MANUEL                                                                     
+
+19 rows selected.
+
+SQL> SELECT P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE DISTINCT DNI AND SYSDATE-FI>365;
+WHERE DISTINCT DNI AND SYSDATE-FI>365
+      *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE DISTINCT SYSDATE-FI>365;
+WHERE DISTINCT SYSDATE-FI>365
+      *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE SYSDATE-FI>365;
+
+P                                                                               
+------------------------------------------------------------                    
+JUAN                                                                            
+JUAN                                                                            
+CARLOS                                                                          
+CARLOS                                                                          
+PEDRO                                                                           
+PEDRO                                                                           
+MARIA                                                                           
+MARIA                                                                           
+MARIA                                                                           
+IVAN                                                                            
+CARMEN                                                                          
+
+P                                                                               
+------------------------------------------------------------                    
+MARIO                                                                           
+FRANCISCO                                                                       
+ANGELA                                                                          
+DAVID                                                                           
+DAVID                                                                           
+DAVID                                                                           
+SOLEDAD                                                                         
+JOSE MANUEL                                                                     
+
+19 rows selected.
+
+SQL> SELECT DISTINCT P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE SYSDATE-FI>365;
+
+P                                                                               
+------------------------------------------------------------                    
+MARIO                                                                           
+JUAN                                                                            
+PEDRO                                                                           
+FRANCISCO                                                                       
+SOLEDAD                                                                         
+CARLOS                                                                          
+IVAN                                                                            
+CARMEN                                                                          
+DAVID                                                                           
+MARIA                                                                           
+JOSE MANUEL                                                                     
+
+P                                                                               
+------------------------------------------------------------                    
+ANGELA                                                                          
+
+12 rows selected.
+
+SQL> SELECT DISTINCT P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE SYSDATE-FI<365;
+
+no rows selected
+
+SQL> SPOOL OFF
