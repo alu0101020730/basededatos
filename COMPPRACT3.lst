@@ -1,0 +1,45 @@
+SQL> DESCRIBE DEPARTAMENTO
+ Name                          Null?    Type
+ ----------------------------- -------- --------------------
+ CD                            NOT NULL NUMBER(2)
+ D                                      VARCHAR2(60)
+
+SQL> DESCRIBE AREA
+ Name                          Null?    Type
+ ----------------------------- -------- --------------------
+ CAR                           NOT NULL NUMBER(3)
+ AR                                     VARCHAR2(60)
+ CD                                     NUMBER(2)
+
+SQL> DESCRIBE PROFESOR
+ Name                          Null?    Type
+ ----------------------------- -------- --------------------
+ DNI                           NOT NULL NUMBER(8)
+ P                                      VARCHAR2(60)
+ CAR                                    NUMBER(3)
+ CAT                                    VARCHAR2(5)
+
+SQL> DESCRIBE ASIGNATURA
+ Name                          Null?    Type
+ ----------------------------- -------- --------------------
+ CAS                           NOT NULL NUMBER(3)
+ A                             NOT NULL VARCHAR2(50)
+ T                             NOT NULL CHAR(6)
+ CUR                                    NUMBER(1)
+ CAR                                    NUMBER(3)
+ CT                                     NUMBER(3,1)
+ CP                                     NUMBER(3,1)
+ CL                                     NUMBER(3,1)
+
+SQL> DESCRIBE PLAN_DOCENTE
+ Name                          Null?    Type
+ ----------------------------- -------- --------------------
+ DNI                           NOT NULL NUMBER(8)
+ CAS                           NOT NULL NUMBER(3)
+ CTA                                    NUMBER(3,1)
+ CPA                                    NUMBER(3,1)
+ CLA                                    NUMBER(3,1)
+ FI                            NOT NULL DATE
+ FF                                     DATE
+
+SQL> SPOOL OFF
